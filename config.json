@@ -1,0 +1,86 @@
+{
+  "devmode": true,
+  "DEVtoken": "NzY5NDI5ODUxMDE4MjMxODA5.X5O5Yw.vvyyc-uKJoTgjsrHjTLH4fM8KVw",
+  "token": "ODg0MDU3Nzc5NDk5ODMxMzk3.YTS89w.7uwX1NBquK-JybQS1VnvjKUpjnU",
+  "DEVclientId": "769429851018231809",
+  "clientId": "884057779499831397",
+  "DEVguildId": "770729805658062878",
+  "guildId": "711815279285370957",
+  "DEVbaseVoiceChannelId": "770729805658062883",
+  "baseVoiceChannelId": "884064627992961064",
+  "logGuildId": "770729805658062878",
+  "defaultDBKey": [
+    {
+      "name": "messageDeleteChannel",
+      "value": "884078147904077834"
+    },
+    {
+      "name": "messageUpdateChannel",
+      "value": "884078171631271946"
+    },
+    {
+      "name": "nicknameUpdateChannel",
+      "value": "884101553437425696"
+    },
+    {
+      "name": "messageJoinChannel",
+      "value": "884110529621286943"
+    },
+    {
+      "name": "messageLeaveChannel",
+      "value": "884110432363741254"
+    },
+    {
+      "name": "voiceUpdateChannel",
+      "value": "884364883909541899"
+    },
+    {
+      "name": "voiceChannels",
+      "value": []
+    }
+  ],
+  "emojis": {
+    "778200784973987850": {
+      "name": "DotA 2",
+      "max": 5
+    },
+    "778200710898384906": {
+      "name": "PUBG",
+      "max": 4
+    },
+    "785018183647232012": {
+      "name": "GTA V",
+      "max": 30
+    },
+    "778200717868924938": {
+      "name": "Mobile Legends",
+      "max": 5
+    },
+    "778200706964127796": {
+      "name": "Point Blank",
+      "max": 8
+    },
+    "785019122824118292": {
+      "name": "Stumble Guys",
+      "max": 32
+    },
+    "778200653695680533": {
+      "name": "Valorant",
+      "max": 5
+    },
+    "778200731224113153": {
+      "name": "LoL - Wild Rift",
+      "max": 5
+    }
+  },
+  "DEVemojis": {
+    "883946619597369394": {
+      "name": "just test",
+      "max": 5
+    },
+    "884038490344529940": {
+      "name": "another test",
+      "max": 9
+    }
+  }
+}
