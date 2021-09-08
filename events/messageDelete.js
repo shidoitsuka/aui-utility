@@ -30,19 +30,15 @@ module.exports = {
       .setColor("#FF0000")
       .setAuthor("Deleted Message")
       .addFields(
-        { name: "**Sent by**", value: `<@${message.author.id}>` },
-        { name: "**In channel**", value: `<#${message.channel.id}>` },
         {
-          name: "**User ID**",
-          value: `\`${message.author.id}\``,
-          inline: true,
+          name: "**Sent by**",
+          value: `<@${message.author.id}> / \`${message.author.id}\``,
         },
-        { name: "**Message ID**", value: `\`${message.id}\``, inline: true },
         {
-          name: "**Channel ID**",
-          value: `\`${message.channel.id}\``,
-          inline: true,
-        }
+          name: "**In channel**",
+          value: `<#${message.channel.id}> / \`${message.channel.id}\``,
+        },
+        { name: "**Message ID**", value: `\`${message.id}\``, inline: true }
       )
       .setFooter(`Message Timestamp: ${timeString}`)
       .setTimestamp();

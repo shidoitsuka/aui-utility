@@ -29,13 +29,13 @@ module.exports = {
           },
           tmpOldRoles.length > 0
             ? {
-                name: "**Old Roles**",
+                name: "**Old Role**",
                 value: `${tmpOldRoles.join("\n• ")}`,
                 inline: true,
               }
-            : { name: "**Old Roles**", value: "None", inline: true },
+            : { name: "**Old Role**", value: "None", inline: true },
           {
-            name: "**New Roles**",
+            name: "**New Role**",
             value: `${tmpNewRoles.join("\n• ")}`,
             inline: true,
           }
@@ -60,7 +60,7 @@ module.exports = {
             inline: false,
           },
           {
-            name: "**Old**",
+            name: "**Before**",
             value: `${
               oldMember.nickname == null
                 ? oldMember.user.username
@@ -69,7 +69,7 @@ module.exports = {
             inline: true,
           },
           {
-            name: "**New**",
+            name: "**After**",
             value: `${
               newMember.nickname == null
                 ? newMember.user.username

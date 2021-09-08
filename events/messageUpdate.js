@@ -38,6 +38,18 @@ module.exports = {
       .setAuthor("Updated Message")
       .addFields(
         {
+          name: "**Message Link**",
+          value: `[Click Here](${oldMsgUrl}) / ${oldMsg.id}`,
+        },
+        {
+          name: "**Sent by**",
+          value: `<@${oldMsg.author.id}> / \`${oldMsg.author.id}\``,
+        },
+        {
+          name: "**In channel**",
+          value: `<#${oldMsg.channel.id}> / \`${oldMsg.channel.id}\``,
+        },
+        {
           name: "**Original Message**",
           value:
             oldMsg.content.length > 1020
@@ -50,17 +62,7 @@ module.exports = {
             newMessage.content.length > 1020
               ? `${newMessage.content.substring(0, 1020)}...`
               : newMessage.content,
-        },
-        { name: "**Sent by**", value: `<@${oldMsg.author.id}>` },
-        { name: "**In channel**", value: `<#${oldMsg.channel.id}>` },
-        { name: "**User ID**", value: `\`${oldMsg.author.id}\``, inline: true },
-        { name: "**Message ID**", value: `\`${oldMsg.id}\``, inline: true },
-        {
-          name: "**Channel ID**",
-          value: `\`${oldMsg.channel.id}\``,
-          inline: true,
-        },
-        { name: "**Link**", value: `[Click Here](${oldMsgUrl})`, inline: true }
+        }
       )
       .setFooter(`Message Timestamp: ${timeString}`)
       .setTimestamp();
