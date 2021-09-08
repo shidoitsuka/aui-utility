@@ -29,11 +29,12 @@ module.exports = {
     } else {
       const voiceChannelId = reactor.voice.channel.id;
       if (voiceChannelId != bot.config.baseVoiceChannelId) return;
+      const name = `🎮┇${bot.config.emojis[reaction.emoji.id].name} - ${reactor.user.tag}`;
       const baseVoiceChannelPos = bot.channels.cache.get(bot.config.baseVoiceChannelId).position;
-      const createdVoiceChannel = await bot.channels.cache.get(bot.config.baseVoiceChannelId).clone({ name: `🎮┇${bot.config.emojis[reaction.emoji.id].name}`, userLimit: bot.config.emojis[reaction.emoji.id].max });
+      const createdVoiceChannel = await bot.channels.cache.get(bot.config.baseVoiceChannelId).clone({ name, userLimit: bot.config.emojis[reaction.emoji.id].max });
       await createdVoiceChannel.setPosition(baseVoiceChannelPos + 1);
       await createdVoiceChannel.permissionOverwrites.create(reactor.id, { MANAGE_CHANNELS: true });
-      bot.db.push("voiceChannels", createdVoiceChannel.id);
+      bot.db.set("voiceChannels", name, createdVoiceChannel.id);
       // move user to new voice channel
       await reactor.voice.setChannel(createdVoiceChannel);
       // delete user reaction
