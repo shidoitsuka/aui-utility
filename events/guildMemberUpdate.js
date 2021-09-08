@@ -6,7 +6,7 @@ module.exports = {
     // check if the user changed name
     if (oldMember.user.bot) return;
     const bot = oldMember.client;
-    const embed = new MessageEmbed();
+    const roleEmbed = new MessageEmbed();
     if (oldMember.roles.cache.size != newMember.roles.cache.size) {
       let tmpOldRoles = [];
       let tmpNewRoles = [];
@@ -18,7 +18,7 @@ module.exports = {
         if (r.name == "@everyone") return;
         tmpNewRoles.push(`**${r.name}**`);
       });
-      embed
+      roleEmbed
         .setColor("#FFFF00")
         .setAuthor(`${oldMember.user.tag} role has been updated`)
         .addFields(
@@ -44,12 +44,13 @@ module.exports = {
       bot.guilds.cache
         .get(bot.config.logGuildId)
         .channels.cache.get(bot.db.get("roleUpdateChannel"))
-        .send({ embeds: [embed] })
+        .send({ embeds: [roleEmbed] })
         .catch((err) => console.error("[ROLE UPDATE]", err));
     }
+    const nickEmbed = new MessageEmbed();
     if (oldMember.nickname != newMember.nickname) {
       console.log("NICKNAME UPDATE");
-      embed
+      nickEmbed
         .setColor("#FFFF00")
         .setAuthor(`${oldMember.user.tag} updated their nickname`)
         .addFields(
@@ -81,7 +82,7 @@ module.exports = {
       bot.guilds.cache
         .get(bot.config.logGuildId)
         .channels.cache.get(bot.db.get("nicknameUpdateChannel"))
-        .send({ embeds: [embed] })
+        .send({ embeds: [nickEmbed] })
         .catch((err) => console.error("[NICKNAME UPDATE]", err));
     }
     // oldMsg.channel.send(`<@${oldMsg.author.id}> updated ${oldMsg.content} to ${newMember.content} in <#${oldMsg.channel.id}> ${oldMsg.url}`);
