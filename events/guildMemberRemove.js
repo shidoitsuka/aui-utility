@@ -27,8 +27,7 @@ module.exports = {
       .setColor("#808080")
       .setAuthor(`${member.user.tag} has left`)
       .addFields(
-        { name: "**User**", value: `<@${member.id}>`, inline: true },
-        { name: "**ID**", value: `\`${member.id}\``, inline: true }
+        { name: "**User**", value: `<@${member.id}> \`${member.id}\``, inline: true },
       )
       .setFooter(
         `Left at: ${timeString} • Member count: ${member.guild.memberCount}`
