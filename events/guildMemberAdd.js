@@ -8,6 +8,7 @@ const day = [
   "Friday",
   "Saturday",
 ];
+const moment = require("moment");
 
 module.exports = {
   name: "guildMemberAdd",
@@ -25,12 +26,16 @@ module.exports = {
         ? "0" + (userCreated.getMonth() + 1)
         : userCreated.getMonth() + 1
     }-${userCreated.getFullYear()}`;
+    // moment, get the difference between now and the user account created
+    const nowTime = moment(new Date());
+    const a = moment(new Date(userCreated));
+    const userCreatedTime = moment.duration(a.diff(nowTime)).humanize();
     const time = new Date(member.joinedAt);
     const timeString = `[${
       time.getHours() < 10 ? "0" + time.getHours() : time.getHours()
-    }:${time.getMinutes()}] ${day[time.getDay()]}, ${
-      time.getDate() < 10 ? "0" + time.getDate() : time.getDate()
-    }-${
+    }:${time.getMinutes() ? "0" + time.getMinutes() : time.getMinutes()}] ${
+      day[time.getDay()]
+    }, ${time.getDate() < 10 ? "0" + time.getDate() : time.getDate()}-${
       time.getMonth() + 1 < 10
         ? "0" + (time.getMonth() + 1)
         : time.getMonth() + 1
@@ -41,7 +46,11 @@ module.exports = {
       .addFields(
         { name: "**Username**", value: `<@${member.id}>`, inline: true },
         { name: "**User ID**", value: `\`${member.id}\``, inline: true },
-        { name: "**Account created at**", value: userCreatedDate, inline: false }
+        {
+          name: "**Account created at**",
+          value: `${userCreatedDate} *[${userCreatedTime} ago]*`,
+          inline: false,
+        }
       )
       .setFooter(
         `Joined at: ${timeString} • Member count: ${member.guild.memberCount}`
@@ -50,7 +59,7 @@ module.exports = {
       .get(bot.config.logGuildId)
       .channels.cache.get(bot.db.get("messageJoinChannel"))
       .send({ embeds: [embed] })
-      .catch((err) => console.error("[MESSAGE UPDATE]", err));
+      .catch((err) => console.error("[GUILD JOIN]", err));
     // console.log(`${member.user.tag} has joined ${member.guild.name} member is now ${member.guild.memberCount}`);
   },
 };
