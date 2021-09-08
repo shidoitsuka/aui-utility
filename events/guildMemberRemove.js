@@ -16,9 +16,9 @@ module.exports = {
     const time = new Date();
     const timeString = `[${
       time.getHours() < 10 ? "0" + time.getHours() : time.getHours()
-    }:${time.getMinutes()}] ${day[time.getDay()]}, ${
-      time.getDate() < 10 ? "0" + time.getDate() : time.getDate()
-    }-${
+    }:${time.getMinutes() ? "0" + time.getMinutes() : time.getMinutes()}] ${
+      day[time.getDay()]
+    }, ${time.getDate() < 10 ? "0" + time.getDate() : time.getDate()}-${
       time.getMonth() + 1 < 10
         ? "0" + (time.getMonth() + 1)
         : time.getMonth() + 1
