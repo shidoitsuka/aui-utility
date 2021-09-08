@@ -30,13 +30,13 @@ module.exports = {
           tmpOldRoles.length > 0
             ? {
                 name: "**Old Roles**",
-                value: `${tmpOldRoles.join(", ")}`,
+                value: `${tmpOldRoles.join("\n• ")}`,
                 inline: true,
               }
             : { name: "**Old Roles**", value: "None", inline: true },
           {
             name: "**New Roles**",
-            value: `${tmpNewRoles.join(", ")}`,
+            value: `${tmpNewRoles.join("\n• ")}`,
             inline: true,
           }
         )
