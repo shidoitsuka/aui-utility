@@ -33,7 +33,6 @@ module.exports = {
       const baseVoiceChannelPos = bot.channels.cache.get(bot.config.baseVoiceChannelId).position;
       const createdVoiceChannel = await bot.channels.cache.get(bot.config.baseVoiceChannelId).clone({ name, userLimit: bot.config.emojis[reaction.emoji.id].max });
       await createdVoiceChannel.setPosition(baseVoiceChannelPos + 1);
-      await createdVoiceChannel.permissionOverwrites.create(reactor.id, { MANAGE_CHANNELS: true });
       bot.db.set("voiceChannels", name, createdVoiceChannel.id);
       // move user to new voice channel
       await reactor.voice.setChannel(createdVoiceChannel);
