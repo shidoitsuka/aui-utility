@@ -27,7 +27,7 @@ module.exports = {
         .setAuthor(`${oldMember.user.tag} role has been updated`)
         .addFields(
           {
-            name: "**User ID**",
+            name: "**User**",
             value: `\`${oldMember.user.id}\` / <@${oldMember.user.id}>`,
             inline: false,
           },
@@ -59,7 +59,7 @@ module.exports = {
         .setAuthor(`${oldMember.user.tag} updated their nickname`)
         .addFields(
           {
-            name: "**User ID**",
+            name: "**User**",
             value: `\`${oldMember.user.id}\` / <@${oldMember.user.id}>`,
             inline: false,
           },
