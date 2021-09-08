@@ -10,13 +10,13 @@ module.exports = {
     if (oldMember.roles.cache.size != newMember.roles.cache.size) {
       let tmpOldRoles = [];
       let tmpNewRoles = [];
-      oldMember.roles.cache.map((r) => {
+      oldMember.roles.cache.map((r, i) => {
         if (r.name == "@everyone") return;
-        tmpOldRoles.push(`**${r.name}**`);
+        tmpOldRoles.push(`**${i} - ${r.name}**`);
       });
-      newMember.roles.cache.map((r) => {
+      newMember.roles.cache.map((r, i) => {
         if (r.name == "@everyone") return;
-        tmpNewRoles.push(`**${r.name}**`);
+        tmpNewRoles.push(`**${i} - ${r.name}**`);
       });
       roleEmbed
         .setColor("#FFFF00")
@@ -30,13 +30,13 @@ module.exports = {
           tmpOldRoles.length > 0
             ? {
                 name: "**Old Role**",
-                value: `${tmpOldRoles.join("\n• ")}`,
+                value: `${tmpOldRoles.join("\n")}`,
                 inline: true,
               }
             : { name: "**Old Role**", value: "None", inline: true },
           {
             name: "**New Role**",
-            value: `${tmpNewRoles.join("\n• ")}`,
+            value: `${tmpNewRoles.join("\n")}`,
             inline: true,
           }
         )

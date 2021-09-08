@@ -39,7 +39,7 @@ module.exports = {
       .addFields(
         {
           name: "**Message Link**",
-          value: `[Click Here](${oldMsgUrl}) / ${oldMsg.id}`,
+          value: `[Click Here](${oldMsgUrl}) / \`${oldMsg.id}\``,
         },
         {
           name: "**Sent by**",
