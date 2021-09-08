@@ -1,7 +1,7 @@
 {
   "devmode": true,
-  "DEVtoken": "NzY5NDI5ODUxMDE4MjMxODA5.X5O5Yw.vvyyc-uKJoTgjsrHjTLH4fM8KVw",
-  "token": "ODg0MDU3Nzc5NDk5ODMxMzk3.YTS89w.7uwX1NBquK-JybQS1VnvjKUpjnU",
+  "DEVtoken": "NzY5NDI5ODUxMDE4MjMxODA5.X5O5Yw.QtN4X_zO02tTb9NHE8XXHWaXPTQ",
+  "token": "ODg0MDU3Nzc5NDk5ODMxMzk3.YTS89w.qWTmAs4YUUx5Vp3yXO7BPzQMiXA",
   "DEVclientId": "769429851018231809",
   "clientId": "884057779499831397",
   "DEVguildId": "770729805658062878",
@@ -15,12 +15,20 @@
       "value": "884078147904077834"
     },
     {
+      "name": "messageDeleteBulkChannel",
+      "value": "884923895130517514"
+    },
+    {
       "name": "messageUpdateChannel",
       "value": "884078171631271946"
     },
     {
       "name": "nicknameUpdateChannel",
       "value": "884101553437425696"
+    },
+    {
+      "name": "roleUpdateChannel",
+      "value": "884364986066010112"
     },
     {
       "name": "messageJoinChannel",
