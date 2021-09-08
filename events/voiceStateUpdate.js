@@ -34,9 +34,7 @@ module.exports = {
     if (newState.channelId == null) {
       embed
         .setColor("#e37d76")
-        .setAuthor(
-          `${oldState.member.user.tag} has left #${oldState.channel.name}`
-        )
+        .setAuthor(`${oldState.member.user.tag} has left #${oldState.channel.name}`)
         .addFields(
           {
             name: "**Channel**",
@@ -80,12 +78,12 @@ module.exports = {
       .channels.cache.get(bot.db.get("voiceUpdateChannel"))
       .send({ embeds: [embed] })
       .catch((err) => console.error("[VOICE UPDATE]", err));
-
-    if (!bot.db.get("voiceChannels").includes(oldState.channelId)) return;
+      
+    if (!Object.keys(bot.db.get("voiceChannels")).includes(oldState.channelId)) return;
     if (oldState.channel.members.size == 0) {
       // delete the channel
-      bot.db.remove("voiceChannels", oldState.channelId);
-      await oldState.channel.delete();
+      bot.db.delete("voiceChannels", oldState.channelId);
+      oldState.channel.delete().catch(err => console.error("[VOICE STATE DELETE]", err));
     }
   },
 };
