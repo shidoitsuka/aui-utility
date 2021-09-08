@@ -10,12 +10,16 @@ module.exports = {
     if (oldMember.roles.cache.size != newMember.roles.cache.size) {
       let tmpOldRoles = [];
       let tmpNewRoles = [];
-      oldMember.roles.cache.map((r, i) => {
+      let j = 0;
+      oldMember.roles.cache.map((r) => {
         if (r.name == "@everyone") return;
-        tmpOldRoles.push(`**${i} - ${r.name}**`);
+        j++;
+        tmpOldRoles.push(`**${j} - ${r.name}**`);
       });
-      newMember.roles.cache.map((r, i) => {
+      let i = 0;
+      newMember.roles.cache.map((r) => {
         if (r.name == "@everyone") return;
+        i++;
         tmpNewRoles.push(`**${i} - ${r.name}**`);
       });
       roleEmbed
