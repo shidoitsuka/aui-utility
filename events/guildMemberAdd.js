@@ -44,8 +44,7 @@ module.exports = {
       .setColor("#00FF00")
       .setAuthor(`${member.user.tag} has joined`)
       .addFields(
-        { name: "**Username**", value: `<@${member.id}>`, inline: true },
-        { name: "**User ID**", value: `\`${member.id}\``, inline: true },
+        { name: "**User**", value: `<@${member.id}> / \`${member.id}\``, inline: true },
         {
           name: "**Account created at**",
           value: `${userCreatedDate} *[${userCreatedTime} ago]*`,
