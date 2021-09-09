@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const PasteClient = require("pastebin-api").default;
+const pastegg = require("paste.gg");
 
 module.exports = {
   name: "messageDeleteBulk",
@@ -14,8 +14,9 @@ module.exports = {
       .setColor("#FF0000")
       .setAuthor("Bulk Deleted Message")
       .setTimestamp();
-    // init pastebin
-    const pastebin = new PasteClient(bot.config.pastebin);
+
+    // init paste.gg
+    const pasteGG = new pastegg(bot.config.pasteGG);
 
     // init datetime
     const now = new Date();
@@ -25,21 +26,27 @@ module.exports = {
       now.getHours() < 10 ? "0" + now.getHours() : now.getHours()
     }:${now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()}]`;
 
-    // post to pastebin
-    pastebin
-      .createPaste({
-        code: `${date}\nDeleted ${
-          message.size
-        } message(s)\nMessage ID | Channel | Author | Content\n${message
-          .map((m) => {
-            if (m.partial) return `Failed to fetch from cache!`;
-            return `${m.id} | #${m.channel.name} (${m.channel.id}) | ${m.author.username}#${m.author.discriminator} | ${m.content}`;
-          })
-          .join("\n")}`,
-        name: `Bulk delete #${channelID} - ${date}`,
-        format: "javascript",
+    // post to paste.gg
+    pasteGG
+      .post({
+        files: [
+          {
+            name: `Bulk delete #${channelID} - ${date}.log`,
+            content: {
+              format: "text",
+              value: `${date}\nDeleted ${
+                message.size
+              } message(s)\nMessage ID | Channel | Author | Content\n${message
+                .map((m) => {
+                  if (m.partial) return `Failed to fetch from cache!`;
+                  return `${m.id} | #${m.channel.name} (${m.channel.id}) | ${m.author.username}#${m.author.discriminator} | ${m.content}`;
+                })
+                .join("\n")}`,
+            },
+          },
+        ],
       })
-      .then((url) => {
+      .then(async (res) => {
         // post to discord
         embed.addFields(
           {
@@ -50,7 +57,10 @@ module.exports = {
             name: "**In channel**",
             value: `<#${channelID}> / \`${channelID}\``,
           },
-          { name: "**URL**", value: `[${url}](${url})` }
+          {
+            name: "**URL**",
+            value: `[Click Here](${res.result.url})`,
+          }
         );
         // send to channel
         bot.guilds.cache
