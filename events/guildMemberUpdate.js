@@ -28,7 +28,7 @@ module.exports = {
         .addFields(
           {
             name: "**User**",
-            value: `\`${oldMember.user.id}\` / <@${oldMember.user.id}>`,
+            value: `<@${oldMember.user.id}> / \`${oldMember.user.id}\``,
             inline: false,
           },
           tmpOldRoles.length > 0
@@ -60,7 +60,7 @@ module.exports = {
         .addFields(
           {
             name: "**User**",
-            value: `\`${oldMember.user.id}\` / <@${oldMember.user.id}>`,
+            value: `<@${oldMember.user.id}> / \`${oldMember.user.id}\``,
             inline: false,
           },
           {
