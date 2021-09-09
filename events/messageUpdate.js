@@ -24,7 +24,7 @@ module.exports = {
     const time = new Date(oldMsg.createdAt);
     const timeString = `[${
       time.getHours() < 10 ? "0" + time.getHours() : time.getHours()
-    }:${time.getMinutes() ? "0" + time.getMinutes() : time.getMinutes()}] ${
+    }:${time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes()}] ${
       day[time.getDay()]
     }, ${time.getDate() < 10 ? "0" + time.getDate() : time.getDate()}-${
       time.getMonth() + 1 < 10
