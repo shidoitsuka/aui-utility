@@ -5,7 +5,7 @@ module.exports = {
   async execute(oldState, newState) {
     const bot = oldState.client;
     /*
-     * @LOGGING
+     * @LOGGING LEAVE/JOIN/SWITCH VOICE CHANNEL
      */
 
     // init embed
@@ -101,6 +101,198 @@ module.exports = {
       .send({ embeds: [embed] })
       .catch((err) => console.error("[VOICE UPDATE]", err));
 
+    /*
+     * @LOGGING SELF/SERVER MUTE/DEAF
+     */
+    const deafMuteEmbed = new MessageEmbed().setTimestamp();
+    if (!oldState.selfDeaf && newState.selfDeaf) {
+      // #5e5e5e --- SELF DEAFENED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#5e5e5e")
+        .setAuthor(`${oldState.member.user.tag} has self-deafened`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("deafenUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[DEAF UPDATE]", err));
+    }
+    if (!oldState.selfMute && newState.selfMute) {
+      // #b30000 --- SELF MUTED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#b30000")
+        .setAuthor(`${oldState.member.user.tag} has self-muted`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("muteUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[MUTE UPDATE]", err));
+    }
+    if (!oldState.serverDeaf && newState.serverDeaf) {
+      // #5e5e5e --- SERVER DEAFENED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#5e5e5e")
+        .setAuthor(`${oldState.member.user.tag} has server-deafened`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("deafenUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[DEAF UPDATE]", err));
+    }
+    if (!oldState.serverMute && newState.serverMute) {
+      // #b30000 --- SERVER MUTED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#b30000")
+        .setAuthor(`${oldState.member.user.tag} has server-muted`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("muteUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[MUTE UPDATE]", err));
+    }
+    if (oldState.selfDeaf && !newState.selfDeaf) {
+      // #ffffff --- SELF UNDEAFENED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#ffffff")
+        .setAuthor(`${oldState.member.user.tag} has self-undeafened`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("deafenUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[DEAF UPDATE]", err));
+    }
+    if (oldState.selfMute && !newState.selfMute) {
+      // b30000 --- SELF UNMUTED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#ffffff")
+        .setAuthor(`${oldState.member.user.tag} has self-unmuted`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("muteUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[MUTE UPDATE]", err));
+    }
+    if (oldState.serverDeaf && !newState.serverDeaf) {
+      // #ffffff --- SERVER UNDEAFENED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#ffffff")
+        .setAuthor(`${oldState.member.user.tag} has server-undeafened`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("deafenUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[DEAF UPDATE]", err));
+    }
+    if (oldState.serverMute && !newState.serverMute) {
+      // b30000 --- SERVER UNMUTED
+      deafMuteEmbed
+        .addFields(
+          {
+            name: "**Channel**",
+            value: `**\`${newState.channel.name}\`** / \`${newState.channel.id}\``,
+            inline: false,
+          },
+          {
+            name: "**User**",
+            value: `<@${newState.id}> / \`${newState.id}\``,
+            inline: true,
+          }
+        )
+        .setColor("#ffffff")
+        .setAuthor(`${oldState.member.user.tag} has server-unmuted`);
+      bot.guilds.cache
+        .get(bot.config.logGuildId)
+        .channels.cache.get(bot.db.get("muteUpdateChannel"))
+        .send({ embeds: [deafMuteEmbed] })
+        .catch((err) => console.error("[MUTE UPDATE]", err));
+    }
+
+    /*
+     * @DELETE VOICE CHANNEL
+     */
     if (!Object.keys(bot.db.get("voiceChannels")).includes(oldState.channelId))
       return;
     if (oldState.channel.members.size == 0) {
