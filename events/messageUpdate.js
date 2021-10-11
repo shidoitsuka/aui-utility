@@ -38,10 +38,6 @@ module.exports = {
       .setAuthor("Updated Message")
       .addFields(
         {
-          name: "**Message Link**",
-          value: `[Click Here](${oldMsgUrl}) / \`${oldMsg.id}\``,
-        },
-        {
           name: "**Sent by**",
           value: `<@${oldMsg.author.id}> / \`${oldMsg.author.id}\``,
         },
@@ -62,7 +58,11 @@ module.exports = {
             newMessage.content.length > 1020
               ? `${newMessage.content.substring(0, 1020)}...`
               : newMessage.content,
-        }
+        },
+        {
+          name: "**Message Link**",
+          value: `[Click Here](${oldMsgUrl}) / \`${oldMsg.id}\``,
+        },
       )
       .setFooter(`Message Timestamp: ${timeString}`)
       .setTimestamp();

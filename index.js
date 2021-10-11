@@ -23,6 +23,7 @@ if (bot.config.devmode) {
   bot.config.guildId = bot.config.DEVguildId;
   bot.config.baseVoiceChannelId = bot.config.DEVbaseVoiceChannelId;
   bot.config.emojis = bot.config.DEVemojis;
+  bot.config.customRolesId = bot.config.DEVcustomRolesId;
 }
 
 // database

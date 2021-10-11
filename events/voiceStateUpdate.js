@@ -107,6 +107,7 @@ module.exports = {
     const deafMuteEmbed = new MessageEmbed().setTimestamp();
     if (!oldState.selfDeaf && newState.selfDeaf) {
       // #5e5e5e --- SELF DEAFENED
+      console.log("[SELF DEAFEN]", newState);
       deafMuteEmbed
         .addFields(
           {
@@ -153,6 +154,7 @@ module.exports = {
     }
     if (!oldState.serverDeaf && newState.serverDeaf) {
       // #5e5e5e --- SERVER DEAFENED
+      console.log("[SERVER DEAFEN]", newState);
       deafMuteEmbed
         .addFields(
           {
